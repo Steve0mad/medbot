@@ -12,9 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.transparent,
-        appBarTheme: AppBarTheme(backgroundColor: Colors.transparent,titleTextStyle: TextStyle())
-      ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff3e6eca),primary: Color(0xff3e6eca))
+     ),
       darkTheme: ThemeData(brightness: Brightness.dark,),
       debugShowCheckedModeBanner: false,
       // remove the small badge that top right the screen
