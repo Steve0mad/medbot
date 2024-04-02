@@ -8,12 +8,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text("Hello,\n ${args.userName}",),
-
           actions: <Widget>[
             IconButton(
               icon: Icon(
                 Icons.notifications,     //must use badge Package
-                color: Colors.white,
+                color: Colors.black,
               ),
               onPressed: () {
                 // do something
@@ -34,7 +33,7 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar (
         items: [
-          BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-keypad-30.png')),label: ''),//white
+          BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-keypad-24.png')),label: ''),//white
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-chat-24 (1).png')),label: ''),//black
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-timer-24.png')),label: ''),//black
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-person-24.png')),label: ''),//black

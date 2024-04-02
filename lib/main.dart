@@ -12,6 +12,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        bottomNavigationBarTheme:BottomNavigationBarThemeData(
+          backgroundColor: Color(0xff3e6eca),
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.black,
+            selectedIconTheme: IconThemeData(color: Colors.white),
+          unselectedIconTheme: IconThemeData(
+            color: Colors.white,
+                size: 32
+          )
+        ),
+
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff3e6eca),primary: Color(0xff3e6eca))
      ),
       darkTheme: ThemeData(brightness: Brightness.dark,),
