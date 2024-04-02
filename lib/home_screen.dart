@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text("Hello,\n ${args.userName}",),
+
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -19,7 +20,7 @@ class HomeScreen extends StatelessWidget {
               },
             )
           ],
-          backgroundColor: Colors.red),
+          backgroundColor: Colors.transparent),
       body: Row(
         children: [
           Expanded( //after wrap Container with widget called Expanded
@@ -30,6 +31,17 @@ class HomeScreen extends StatelessWidget {
                 child: Text("silder",style: TextStyle(color: Colors.white,fontSize: 20),)),
           )
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar (
+        items: [
+          BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-keypad-30.png')),label: ''),//white
+          BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-chat-24 (1).png')),label: ''),//black
+          BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-timer-24.png')),label: ''),//black
+          BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-person-24.png')),label: ''),//black
+
+        ],
+
+
       ),
     );
   }
