@@ -32,7 +32,9 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar (
+          backgroundColor: Color(0xff3e6eca),
         items: [
+
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-keypad-24.png')),label: ''),//white
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-chat-24 (1).png')),label: ''),//black
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/images/icons8-timer-24.png')),label: ''),//black
