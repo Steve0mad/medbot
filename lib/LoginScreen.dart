@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medbot/home_screen.dart';
+import 'package:medbot/ui/home/home_screen.dart';
 class LoginScreen extends StatelessWidget {
   static const String routeName='login';
 
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                 decoration: InputDecoration(labelText: "Password") ,),
             ElevatedButton(onPressed: (){
 
-             Navigator.pushNamed(context, HomeScreen.routeName,arguments: ScreenArgs(userName: userName, passWord: passWord) );//to display the username
+             Navigator.pushNamed(context, HomeScreen.routeName,arguments: (userName: userName, passWord: passWord) );//to display the username
 
             }, child: Text('Login'))
               ],
