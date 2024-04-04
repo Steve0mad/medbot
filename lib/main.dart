@@ -1,7 +1,7 @@
 import 'package:medbot/LoginScreen.dart';
-import 'package:medbot/ui/history/historytab.dart';
-import 'ui/Home/home_screen.dart';
+import 'package:medbot/ui/HomeScreen/history/historytab.dart';
 import 'package:flutter/material.dart';
+import 'ui/HomeScreen/homeScreen.dart';
 void main() {
   runApp( MyApp());
 }

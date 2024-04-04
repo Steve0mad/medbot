@@ -5,6 +5,8 @@ class historyTab extends StatelessWidget {
  const historyTab({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold() ;
+    return Placeholder(
+      color: Colors.purple,
+    ) ;
   }
 }

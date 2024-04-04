@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:medbot/ui/history/historytab.dart';
-import 'package:medbot/ui/profile/ProfileTab.dart';
+import 'package:medbot/ui/HomeScreen/HomeTab/HomeTab.dart';
+import 'package:medbot/ui/HomeScreen/chat/chat.dart';
+import 'package:medbot/ui/HomeScreen/history/historytab.dart';
+import 'profile/ProfileTab.dart';
 
-import '../chat/chat.dart';
-
-class HomeScreen extends StatefulWidget {
+class  HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
-
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State< HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State< HomeScreen> {
   int selectedTabIndex = 0;
 
   @override
@@ -36,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedTabIndex,
         onTap: (index){
-
           setState(() {
             selectedTabIndex= index;
           });
@@ -46,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Theme.of(context).primaryColor,
               icon: Image(
                   image: AssetImage('assets/images/icons8-keypad-24.png')),
-              label: 'home'), //white
+              label: 'Home'), //white
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
               icon: Image(
@@ -64,21 +62,19 @@ class _HomeScreenState extends State<HomeScreen> {
               label: 'Profile'), //black
         ],
       ),
-      body: tabs[selectedTabIndex],
+      body: tabs[selectedTabIndex],   //list of widegt (Arry of widget)
     );
 
   }
+
  var tabs=[
-
-
-
-   HomeScreen(),
+   HomeTab(),
    ChatTab(),
    historyTab(),
    ProfileTab()
-
 //arrange it you idot
  ];
+
 
 
 
