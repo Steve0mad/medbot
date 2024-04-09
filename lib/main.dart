@@ -2,8 +2,9 @@ import 'package:medbot/LoginScreen.dart';
 import 'package:medbot/ui/HomeScreen/history/historytab.dart';
 import 'package:flutter/material.dart';
 import 'ui/HomeScreen/homeScreen.dart';
+import 'package:provider/provider.dart'; 
 void main() {
-  runApp( MyApp());
+  runApp( MyApp()); //wrap with provider widget ChangeNotifierProvider
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff3e6eca),primary: Color(0xff3e6eca))
      ),
       darkTheme: ThemeData(brightness: Brightness.dark,),
+
       debugShowCheckedModeBanner: false,
       // remove the small badge that top right the screen
       initialRoute:LoginScreen.routeName,

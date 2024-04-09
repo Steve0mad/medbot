@@ -3,13 +3,11 @@ import 'package:medbot/ui/HomeScreen/HomeTab/HomeTab.dart';
 import 'package:medbot/ui/HomeScreen/chat/chat.dart';
 import 'package:medbot/ui/HomeScreen/history/historytab.dart';
 import 'profile/ProfileTab.dart';
-
 class  HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
   @override
-  State< HomeScreen> createState() => _HomeScreenState();
+  State <HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State< HomeScreen> {
   int selectedTabIndex = 0;
 
@@ -64,7 +62,6 @@ class _HomeScreenState extends State< HomeScreen> {
       ),
       body: tabs[selectedTabIndex],   //list of widegt (Arry of widget)
     );
-
   }
 
  var tabs=[
@@ -72,7 +69,7 @@ class _HomeScreenState extends State< HomeScreen> {
    ChatTab(),
    historyTab(),
    ProfileTab()
-//arrange it you idot
+                                 //arrange it you idiot!!!
  ];
 
 
