@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:medbot/ui/HomeScreen/homeScreen.dart';
 class LoginScreen extends StatelessWidget {
   static const String routeName='login';

@@ -1,8 +1,9 @@
-import 'package:medbot/LoginScreen.dart';
 import 'package:medbot/ui/HomeScreen/history/historytab.dart';
 import 'package:flutter/material.dart';
+import 'package:medbot/ui/auth/login/LoginScreen.dart';
+import 'package:medbot/ui/auth/register.dart';
 import 'ui/HomeScreen/homeScreen.dart';
-import 'package:provider/provider.dart'; 
+import 'package:provider/provider.dart';
 void main() {
   runApp( MyApp()); //wrap with provider widget ChangeNotifierProvider
 }
@@ -30,11 +31,12 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       // remove the small badge that top right the screen
-      initialRoute:LoginScreen.routeName,
+      initialRoute:RegisterScreen.routeName,
       routes: {
                HomeScreen.routeName: (context) => HomeScreen () ,
+               RegisterScreen.routeName:(context)=>RegisterScreen(),
                LoginScreen.routeName: (context) => LoginScreen () ,
-               historyTab.routeName:(context)=> historyTab ()
+               historyTab.routeName:(context)=> historyTab()
       },
     );
   }
