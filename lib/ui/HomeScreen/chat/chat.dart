@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ChatTab extends StatelessWidget {
+  static const String routeName='ChatTab';
   const ChatTab({super.key});
 
   @override

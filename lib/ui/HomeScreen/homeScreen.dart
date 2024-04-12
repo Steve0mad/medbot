@@ -15,6 +15,7 @@ class _HomeScreenState extends State< HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 120,
           title: Text(
             "Hello,\n Mariam",
           ),

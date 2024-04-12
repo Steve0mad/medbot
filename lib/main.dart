@@ -1,3 +1,4 @@
+import 'package:medbot/ui/HomeScreen/chat/chat.dart';
 import 'package:medbot/ui/HomeScreen/history/historytab.dart';
 import 'package:flutter/material.dart';
 import 'package:medbot/ui/auth/login/LoginScreen.dart';
@@ -36,7 +37,9 @@ class MyApp extends StatelessWidget {
                HomeScreen.routeName: (context) => HomeScreen () ,
                RegisterScreen.routeName:(context)=>RegisterScreen(),
                LoginScreen.routeName: (context) => LoginScreen () ,
-               historyTab.routeName:(context)=> historyTab()
+               historyTab.routeName:(context)=> historyTab(),
+               ChatTab.routeName:(context)=>ChatTab()
+
       },
     );
   }
