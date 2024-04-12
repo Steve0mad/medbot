@@ -3,9 +3,15 @@ import 'package:medbot/ui/HomeScreen/history/historytab.dart';
 import 'package:flutter/material.dart';
 import 'package:medbot/ui/auth/login/LoginScreen.dart';
 import 'package:medbot/ui/auth/register.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'ui/HomeScreen/homeScreen.dart';
 import 'package:provider/provider.dart';
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp( MyApp()); //wrap with provider widget ChangeNotifierProvider
 }
 class MyApp extends StatelessWidget {
@@ -32,7 +38,7 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       // remove the small badge that top right the screen
-      initialRoute:HomeScreen.routeName,
+      initialRoute:RegisterScreen.routeName,
       routes: {
                HomeScreen.routeName: (context) => HomeScreen () ,
                RegisterScreen.routeName:(context)=>RegisterScreen(),
