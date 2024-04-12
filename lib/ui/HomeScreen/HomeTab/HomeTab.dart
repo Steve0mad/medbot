@@ -25,11 +25,33 @@ class _HomeTabState extends State<HomeTab> {
                 innerColor: Colors.white,
                 outerColor: Colors.blue,
                 elevation: 3,
-                borderRadius: 25,
+                borderRadius: 30,
                 alignment: Alignment.centerRight,
               ),
+              Divider( // بفصل ما بيهم
+                height: 50,
+                thickness: 0,
+                color: Colors.transparent,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+
+                    height: 100,
+                    width: 130,
+                    child: Column(
+
+                      children: [
+                        Text("Our Features",style: TextStyle(fontSize: 20),),
+
+                      ],
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ));
+    
   }
 }
