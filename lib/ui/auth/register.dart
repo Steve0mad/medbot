@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:medbot/core/utiltis/my_vaildation.dart';
+import 'package:medbot/ui/HomeScreen/homeScreen.dart';
+import 'package:medbot/ui/auth/login/LoginScreen.dart';
 import 'package:medbot/ui/componant/custom_text_form_field.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   static const String routeName='Register';
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
 
-
+class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController fullNameController=TextEditingController();
+
   TextEditingController EmailController=TextEditingController();
+
   TextEditingController PasswordContrller=TextEditingController();
+
   TextEditingController PasswrodConfirmationContrller=TextEditingController();
+
   var formKey=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -106,7 +116,11 @@ class RegisterScreen extends StatelessWidget {
                       onPressed: (){
                         register();
 
-                  }, child: Text("Create Account",style: TextStyle(fontSize:24 ),))
+                  }, child: Text("Create Account",style: TextStyle(fontSize:24 ),)),
+                  TextButton(onPressed: () {
+                    Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                  }, child: Text("Already have Account"))
+
                 ],
               ),
             ),
@@ -118,6 +132,6 @@ class RegisterScreen extends StatelessWidget {
     if(formKey.currentState?.validate()==false){
       return;
     }
-
+    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
   }
 }

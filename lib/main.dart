@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       // remove the small badge that top right the screen
-      initialRoute:RegisterScreen.routeName,
+      initialRoute:HomeScreen.routeName,
       routes: {
                HomeScreen.routeName: (context) => HomeScreen () ,
                RegisterScreen.routeName:(context)=>RegisterScreen(),
