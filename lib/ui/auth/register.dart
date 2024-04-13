@@ -116,7 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPressed: (){
                         register();
 
-                  }, child: Text("Create Account",style: TextStyle(fontSize:24 ),)),
+                  }, child: Text("Create Account",style: TextStyle(fontSize:24 ,color: Colors.white),)),
                   TextButton(onPressed: () {
                     Navigator.pushReplacementNamed(context, LoginScreen.routeName);
                   }, child: Text("Already have Account"))
