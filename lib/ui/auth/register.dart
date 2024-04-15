@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:medbot/core/utiltis/dialog_utiltis.dart';
 import 'package:medbot/core/utiltis/firebase_error_codes.dart';
 import 'package:medbot/core/utiltis/my_vaildation.dart';
+import 'package:medbot/ui/HomeScreen/homeScreen.dart';
 import 'package:medbot/ui/auth/login/LoginScreen.dart';
 import 'package:medbot/ui/componant/custom_text_form_field.dart';
 
@@ -54,8 +56,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   CustomTextFormField(
-                    controller: ageController  ,
-                    keyboardType: TextInputType.number ,
+                    controller: ageController,
+                    keyboardType: TextInputType.number,
                     validation: (text) {
                       if (text == null || text.trim().isEmpty) {
                         return "enter valid age";
@@ -141,19 +143,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
     try {
+      DialogUtils.showLoadingDialog(context: context);
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: EmailController.text.trim(),
         password: PasswordContrller.text,
       );
+      DialogUtils.hideDialog(context);
+      DialogUtils.showMessageDialog(
+          context: context,
+          message: "User reqisted successfully${credential.user?.uid}",
+          postiveTitle: "Ok",
+          postiveClick: () {
+            DialogUtils.hideDialog(context);
+            Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+          });
       print(credential.user?.uid);
     } on FirebaseAuthException catch (e) {
+      DialogUtils.hideDialog(context);
+
       if (e.code == FirebaseAuthErrorCodes.weakPass) {
-        print('The password provided is too weak.');
+        DialogUtils.showMessageDialog(
+            context: context,
+            message:'The password provided is too weak.',
+            postiveTitle: "Ok",
+            postiveClick: () {
+              DialogUtils.hideDialog(context);
+            });
       } else if (e.code == FirebaseAuthErrorCodes.emailAlreadyInUse) {
-        print('The account already exists for that email.');
+        DialogUtils.showMessageDialog(
+            context: context,
+            message:'The account already exists for that email.',
+            postiveTitle: "Ok",
+            postiveClick: () {
+              DialogUtils.hideDialog(context);
+            });
       }
     } catch (e) {
+      DialogUtils.hideDialog(context);
+      DialogUtils.showMessageDialog(
+          context: context,
+          message: e.toString(),
+          postiveTitle: "Ok",
+          postiveClick: () {
+            DialogUtils.hideDialog(context);
+          });
       print(e);
     }
   }
