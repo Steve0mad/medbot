@@ -7,6 +7,7 @@ import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'ui/HomeScreen/homeScreen.dart';
 import 'package:provider/provider.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -38,13 +39,13 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       // remove the small badge that top right the screen
-      initialRoute:RegisterScreen.routeName,
-      routes: {
+      initialRoute:LoginScreen.routeName,
+      routes:{
                HomeScreen.routeName: (context) => HomeScreen () ,
                RegisterScreen.routeName:(context)=>RegisterScreen(),
                LoginScreen.routeName: (context) => LoginScreen () ,
                historyTab.routeName:(context)=> historyTab(),
-               ChatTab.routeName:(context)=>ChatTab()
+               ChatTab.routeName:(context)=>ChatTab(),
 
       },
     );

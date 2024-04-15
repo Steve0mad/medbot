@@ -1,41 +1,41 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:medbot/core/utiltis/firebase_error_codes.dart';
 import 'package:medbot/core/utiltis/my_vaildation.dart';
-import 'package:medbot/ui/HomeScreen/homeScreen.dart';
 import 'package:medbot/ui/auth/login/LoginScreen.dart';
 import 'package:medbot/ui/componant/custom_text_form_field.dart';
 
 class RegisterScreen extends StatefulWidget {
-  static const String routeName='Register';
+  static const String routeName = 'Register';
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  TextEditingController fullNameController=TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
 
-  TextEditingController EmailController=TextEditingController();
+  TextEditingController EmailController = TextEditingController();
 
-  TextEditingController PasswordContrller=TextEditingController();
+  TextEditingController PasswordContrller = TextEditingController();
 
-  TextEditingController PasswrodConfirmationContrller=TextEditingController();
+  TextEditingController PasswrodConfirmationContrller = TextEditingController();
 
-  var formKey=GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-
         decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(image: AssetImage("assets/images/background.png")
-          ,fit: BoxFit.fill
-          )
-        ),
+            color: Colors.white,
+            image: DecorationImage(
+                image: AssetImage("assets/images/background.png"),
+                fit: BoxFit.fill)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Form(
-            key: formKey ,
+            key: formKey,
             child: Container(
               padding: EdgeInsets.all(12),
               child: Column(
@@ -44,55 +44,62 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   CustomTextFormField(
                     controller: fullNameController,
-                    validation:(text) {
-                      if(text==null||text.trim().isEmpty){
-                        return"enter valid name";
+                    validation: (text) {
+                      if (text == null || text.trim().isEmpty) {
+                        return "enter valid name";
                       }
                     },
                     decoration: InputDecoration(
                       labelText: "Full Name",
                     ),
-
+                  ),
+                  CustomTextFormField(
+                    controller: ageController  ,
+                    keyboardType: TextInputType.number ,
+                    validation: (text) {
+                      if (text == null || text.trim().isEmpty) {
+                        return "enter valid age";
+                      }
+                    },
+                    decoration: InputDecoration(
+                      labelText: "age",
+                    ),
                   ),
                   CustomTextFormField(
                     controller: EmailController,
-                    validation:(text) {
-                      if(text==null||text.trim().isEmpty){
-                        return"enter valid email";
+                    validation: (text) {
+                      if (text == null || text.trim().isEmpty) {
+                        return "enter valid email";
                       }
-                      if(!MyValidations.isValidEmail(text)){
+                      if (!MyValidations.isValidEmail(text)) {
                         return "enter invlaild email";
                       }
                     },
-
                     decoration: InputDecoration(
                       labelText: "Email Address",
                     ),
-
                   ),
-                  CustomTextFormField (
+                  CustomTextFormField(
                     controller: PasswordContrller,
-                    validation:(text) {
-                      if(text==null||text.trim().isEmpty){
-                        return"enter valid password";
+                    validation: (text) {
+                      if (text == null || text.trim().isEmpty) {
+                        return "enter valid password";
                       }
-                      if(text.length<6){
+                      if (text.length < 6) {
                         return "enter invalid password";
                       }
-
                     },
                     decoration: InputDecoration(
                       labelText: "Password",
                     ),
-
                   ),
                   CustomTextFormField(
                     controller: PasswrodConfirmationContrller,
-                    validation:(text) {
-                      if(text==null||text.trim().isEmpty){
-                        return"enter valid email";
+                    validation: (text) {
+                      if (text == null || text.trim().isEmpty) {
+                        return "enter valid email";
                       }
-                      if(PasswordContrller.text != text){
+                      if (PasswordContrller.text != text) {
                         return "password doesn't match";
                       }
                     },
@@ -101,26 +108,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   SizedBox(
-
                     height: 25,
-
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue ,
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)
-                        )
-                      ),
-                      onPressed: (){
+                          backgroundColor: Colors.blue,
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12))),
+                      onPressed: () {
                         register();
-
-                  }, child: Text("Create Account",style: TextStyle(fontSize:24 ,color: Colors.white),)),
-                  TextButton(onPressed: () {
-                    Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-                  }, child: Text("Already have Account"))
-
+                      },
+                      child: Text(
+                        "Create Account",
+                        style: TextStyle(fontSize: 24, color: Colors.white),
+                      )),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, LoginScreen.routeName);
+                      },
+                      child: Text("Already have Account"))
                 ],
               ),
             ),
@@ -128,10 +136,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ));
   }
 
-  void register() {
-    if(formKey.currentState?.validate()==false){
+  Future<void> register() async {
+    if (formKey.currentState?.validate() == false) {
       return;
     }
-    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    try {
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: EmailController.text.trim(),
+        password: PasswordContrller.text,
+      );
+      print(credential.user?.uid);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == FirebaseAuthErrorCodes.weakPass) {
+        print('The password provided is too weak.');
+      } else if (e.code == FirebaseAuthErrorCodes.emailAlreadyInUse) {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }
