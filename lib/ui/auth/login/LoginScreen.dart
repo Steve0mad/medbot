@@ -120,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
           });
       print(credential.user?.uid);
     } on FirebaseAuthException catch (e) {
+      DialogUtils.hideDialog(context);
       if (e.code == FirebaseAuthErrorCodes.userNotFound) {
         DialogUtils.showMessageDialog(
             context: context,
@@ -129,7 +130,6 @@ class _LoginScreenState extends State<LoginScreen> {
               DialogUtils.hideDialog(context);
             });
       } else if (e.code == FirebaseAuthErrorCodes.worngPass) {
-        print('Wrong password provided for that user.');
       }
     }
   }
