@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileTab extends StatelessWidget {
-  const ProfileTab({super.key});
+  static const String routeName = 'ProfileTab';
+   ProfileTab({super.key});
 
   @override
   Widget build(BuildContext context) {

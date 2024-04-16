@@ -1,6 +1,7 @@
 import 'package:medbot/ui/HomeScreen/chat/chat.dart';
 import 'package:medbot/ui/HomeScreen/history/historytab.dart';
 import 'package:flutter/material.dart';
+import 'package:medbot/ui/HomeScreen/profile/ProfileTab.dart';
 import 'package:medbot/ui/auth/login/LoginScreen.dart';
 import 'package:medbot/ui/auth/register.dart';
 import 'firebase_options.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
                LoginScreen.routeName: (context) => LoginScreen () ,
                historyTab.routeName:(context)=> historyTab(),
                ChatTab.routeName:(context)=>ChatTab(),
+               ProfileTab.routeName:(context)=>ProfileTab(),
 
       },
     );
