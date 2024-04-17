@@ -21,6 +21,8 @@ class _HomeTabState extends State<HomeTab> {
             onSubmit: () {
               Navigator.pushNamed(context, ChatTab.routeName);
             },
+            text: "Go chat",
+            textStyle: TextStyle(fontSize: 25,color: Colors.white),
             innerColor: Colors.white,
             outerColor: Colors.blue,
             elevation: 3,

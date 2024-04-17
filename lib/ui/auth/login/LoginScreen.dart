@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:medbot/core/firestore_helper.dart';
 import 'package:medbot/core/utiltis/dialog_utiltis.dart';
 import 'package:medbot/core/utiltis/firebase_error_codes.dart';
 import 'package:medbot/core/utiltis/my_vaildation.dart';
+import 'package:medbot/providers/auth_provider.dart';
 import 'package:medbot/ui/HomeScreen/homeScreen.dart';
 import 'package:medbot/ui/auth/register.dart';
 import 'package:medbot/ui/componant/custom_text_form_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'LoginScreen';
@@ -104,11 +107,16 @@ class _LoginScreenState extends State<LoginScreen> {
     if (formKey.currentState?.validate() == false) {
       return;
     }
-    try {
+    try  {
+      AuthUserProvider provider = Provider.of<AuthUserProvider>(context,listen: false);
       DialogUtils.showLoadingDialog(context: context);
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: EmailController.text.trim(), password: PasswordContrller.text);
 
+       //FirebaseAuth.instance.c
+      provider.authUser=credential.user;
+      provider.databaseUser= await FirestoreHelper.getUser(credential.user!.uid);
+      print("Full Name:${provider.databaseUser?.fullName}");
       DialogUtils.hideDialog(context);
       DialogUtils.showMessageDialog(
           context: context,

@@ -1,11 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:medbot/core/firestore_helper.dart';
 import 'package:medbot/core/utiltis/dialog_utiltis.dart';
 import 'package:medbot/core/utiltis/firebase_error_codes.dart';
 import 'package:medbot/core/utiltis/my_vaildation.dart';
+import 'package:medbot/providers/auth_provider.dart';
 import 'package:medbot/ui/HomeScreen/homeScreen.dart';
 import 'package:medbot/ui/auth/login/LoginScreen.dart';
 import 'package:medbot/ui/componant/custom_text_form_field.dart';
+import 'package:medbot/model/user.dart' as MyUser;
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = 'Register';
@@ -143,12 +147,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
     try {
+      AuthUserProvider provider = Provider.of<AuthUserProvider>(context,listen: false);
       DialogUtils.showLoadingDialog(context: context);
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: EmailController.text.trim(),
         password: PasswordContrller.text,
       );
+      provider.authUser= credential.user;
+       MyUser.User databaseUser = MyUser.User(
+           id:credential.user!.uid,
+           age: int.parse(ageController.text) ,
+           email: EmailController.text,
+           fullName: fullNameController.text
+
+      );
+         provider.databaseUser=databaseUser;
+      await FirestoreHelper.AddNewUser(databaseUser);
       DialogUtils.hideDialog(context);
       DialogUtils.showMessageDialog(
           context: context,
@@ -194,3 +209,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 }
 //mariamISboss@gmail.com
 //000000
+//another acc for test database
+//mariamEssam@gmail.com
+//123456
