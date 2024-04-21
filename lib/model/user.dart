@@ -3,7 +3,7 @@ class User{
   String? fullName;
   int? age;
   String? email;
-  User({this.id,this.email,this.age,this.fullName});
+  User({this.id,this.email,this.age,this.fullName, required String bio});
  User.fromFiresotre(Map<String,dynamic>?data){
 id = data?['id'];
 fullName= data?['fullname'];

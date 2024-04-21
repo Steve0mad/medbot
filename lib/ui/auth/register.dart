@@ -159,7 +159,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
            id:credential.user!.uid,
            age: int.parse(ageController.text) ,
            email: EmailController.text,
-           fullName: fullNameController.text
+           fullName: fullNameController.text,
+           bio:fullNameController.text,
 
       );
          provider.databaseUser=databaseUser;
